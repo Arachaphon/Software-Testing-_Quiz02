@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.1 (Python 3.13.1 on win32)" generated="2026-02-11T12:01:05.964912" rpa="false" schemaversion="5">
+<suite id="s1" name="Simulate" source="D:\ปี2\tester\Software-Testing-_Quiz02\simulate.robot">
+<kw name="Open Browser" owner="SeleniumLibrary" type="SETUP">
+<msg time="2026-02-11T12:01:06.742314" level="INFO">Opening browser 'Chrome' to base url 'https://reg.up.ac.th/app/main'.</msg>
+<arg>https://reg.up.ac.th/app/main</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-02-11T12:01:06.741865" elapsed="6.775882"/>
+</kw>
+<test id="s1-t1" name="Simulate Grade Process" line="73">
+<kw name="Login Via Office 365">
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-11T12:01:13.520754" elapsed="0.311425"/>
+</kw>
+<kw name="Handle Cookie">
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath://button[contains(text(),'ยอมรับ')]</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-11T12:01:13.836017" elapsed="0.368078"/>
+</kw>
+<arg>SeleniumLibrary.Wait Until Element Is Visible</arg>
+<arg>xpath://button[contains(text(),'ยอมรับ')]</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-02-11T12:01:13.834960" elapsed="0.369611"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:14.207670" level="INFO">Clicking element 'xpath://button[contains(text(),'ยอมรับ')]'.</msg>
+<arg>xpath://button[contains(text(),'ยอมรับ')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-11T12:01:14.206205" elapsed="0.268585"/>
+</kw>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>xpath://button[contains(text(),'ยอมรับ')]</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-02-11T12:01:14.205241" elapsed="0.269934"/>
+</kw>
+<status status="PASS" start="2026-02-11T12:01:13.832876" elapsed="0.642572"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>class:js-show-header-dropdown</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-11T12:01:14.475746" elapsed="0.051117"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:14.527471" level="INFO">Clicking element 'class:js-show-header-dropdown'.</msg>
+<arg>class:js-show-header-dropdown</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-11T12:01:14.527158" elapsed="0.195408"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath://a[contains(@href, 'loginoffice365')]</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-11T12:01:14.722995" elapsed="0.034329"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:14.758358" level="INFO">Executing JavaScript:
+document.querySelector('a[href*="loginoffice365"]').click()
+Without any arguments.</msg>
+<arg>document.querySelector('a[href*="loginoffice365"]').click()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-11T12:01:14.757633" elapsed="1.667005"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id:i0116</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-11T12:01:16.425674" elapsed="0.819368"/>
+</kw>
+<msg time="2026-02-11T12:01:17.245592" level="INFO">${is_signin_page} = True</msg>
+<var>${is_signin_page}</var>
+<arg>SeleniumLibrary.Wait Until Element Is Visible</arg>
+<arg>id:i0116</arg>
+<arg>5s</arg>
+<doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-02-11T12:01:16.424965" elapsed="0.820729"/>
+</kw>
+<if>
+<branch type="IF" condition="${is_signin_page}">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:17.247133" level="INFO">Typing text '67023031@up.ac.th' into text field 'id:i0116'.</msg>
+<arg>id:i0116</arg>
+<arg>${EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-11T12:01:17.246554" elapsed="0.278847"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:17.526152" level="INFO">Clicking element 'id:idSIButton9'.</msg>
+<arg>id:idSIButton9</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-11T12:01:17.525805" elapsed="0.172722"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-02-11T12:01:19.700986" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-02-11T12:01:17.698833" elapsed="2.002348"/>
+</kw>
+<status status="PASS" start="2026-02-11T12:01:17.246098" elapsed="2.455298"/>
+</branch>
+<status status="PASS" start="2026-02-11T12:01:17.246004" elapsed="2.455545"/>
+</if>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath://div[contains(text(), '${EMAIL}')]</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-11T12:01:19.701770" elapsed="0.050644"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:19.753221" level="INFO">Clicking element 'xpath://div[contains(text(), '67023031@up.ac.th')]'.</msg>
+<arg>xpath://div[contains(text(), '${EMAIL}')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-11T12:01:19.752765" elapsed="0.136279"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id:i0118</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-11T12:01:19.889409" elapsed="0.035780"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:19.926147" level="INFO">Typing password into text field 'id:i0118'.</msg>
+<msg time="2026-02-11T12:01:20.007258" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>id:i0118</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-11T12:01:19.925671" elapsed="0.187009"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:20.113358" level="INFO">Clicking element 'id:idSIButton9'.</msg>
+<arg>id:idSIButton9</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-11T12:01:20.112997" elapsed="0.376376"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:26.449144" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-17.png"&gt;&lt;img src="selenium-screenshot-17.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-02-11T12:01:26.449449" level="FAIL">Element 'id:idSIButton9' not visible after 5 seconds.</msg>
+<arg>id:idSIButton9</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2026-02-11T12:01:20.490416" elapsed="5.968561">Element 'id:idSIButton9' not visible after 5 seconds.</status>
+</kw>
+<arg>SeleniumLibrary.Wait Until Element Is Visible</arg>
+<arg>id:idSIButton9</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-02-11T12:01:20.489696" elapsed="5.969677"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:26.461704" level="INFO">Clicking element 'id:idSIButton9'.</msg>
+<msg time="2026-02-11T12:01:27.255046" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-18.png"&gt;&lt;img src="selenium-screenshot-18.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-02-11T12:01:27.255432" level="FAIL">ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementnotinteractableexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff71f2bf3d5
+	0x7ff71f2bf430
+	0x7ff71f060ea6
+	0x7ff71f0bd8d4
+	0x7ff71f0aeee6
+	0x7ff71f0e589a
+	0x7ff71f0ae766
+	0x7ff71f109d08
+	0x7ff71f0acb0c
+	0x7ff71f0ada53
+	0x7ff71f59b470
+	0x7ff71f59586d
+	0x7ff71f5b621a
+	0x7ff71f2db235
+	0x7ff71f2e3a5c
+	0x7ff71f2c8844
+	0x7ff71f2c89f6
+	0x7ff71f2aeb87
+	0x7ffc0844e8d7
+	0x7ffc091ec53c
+</msg>
+<arg>id:idSIButton9</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="FAIL" start="2026-02-11T12:01:26.461341" elapsed="0.804955">ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementnotinteractableexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff71f2bf3d5
+	0x7ff71f2bf430
+	0x7ff71f060ea6
+	0x7ff71f0bd8d4
+	0x7ff71f0aeee6
+	0x7ff71f0e589a
+	0x7ff71f0ae766
+	0x7ff71f109d08
+	0x7ff71f0acb0c
+	0x7ff71f0ada53
+	0x7ff71f59b470
+	0x7ff71f59586d
+	0x7ff71f5b621a
+	0x7ff71f2db235
+	0x7ff71f2e3a5c
+	0x7ff71f2c8844
+	0x7ff71f2c89f6
+	0x7ff71f2aeb87
+	0x7ffc0844e8d7
+	0x7ffc091ec53c
+</status>
+</kw>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>id:idSIButton9</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-02-11T12:01:26.459943" elapsed="0.806597"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>ออกจากระบบ</arg>
+<arg>20s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2026-02-11T12:01:27.266843" elapsed="14.511809"/>
+</kw>
+<status status="PASS" start="2026-02-11T12:01:13.519950" elapsed="28.258880"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2026-02-11T12:01:57.227308" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-19.png"&gt;&lt;img src="selenium-screenshot-19.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-02-11T12:01:57.227511" level="FAIL">Element 'xpath://a[contains(@onclick, "menu_click('ประมวลผลการศึกษา')")]' not visible after 15 seconds.</msg>
+<arg>xpath://a[contains(@onclick, "menu_click('ประมวลผลการศึกษา')")]</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2026-02-11T12:01:41.779294" elapsed="15.450261">Element 'xpath://a[contains(@onclick, "menu_click('ประมวลผลการศึกษา')")]' not visible after 15 seconds.</status>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>xpath://a[contains(@onclick, "menu_click('ประมวลผลการศึกษา')")]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-02-11T12:01:57.230421" elapsed="0.000062"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath://a[contains(@onclick, "student/simulate_grade")]</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2026-02-11T12:01:57.230825" elapsed="0.000076"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>xpath://a[contains(@onclick, "student/simulate_grade")]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2026-02-11T12:01:57.231222" elapsed="0.000048"/>
+</kw>
+<kw name="Select Grade From Dropdown">
+<arg>${sub_id}</arg>
+<arg>${grade_value}</arg>
+<status status="NOT RUN" start="2026-02-11T12:01:57.231685" elapsed="0.000056"/>
+</kw>
+<kw name="Click คำนวณเกรด">
+<status status="NOT RUN" start="2026-02-11T12:01:57.232147" elapsed="0.000055"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-02-11T12:01:57.232485" elapsed="0.000049"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<arg>final_result.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" start="2026-02-11T12:01:57.232826" elapsed="0.000052"/>
+</kw>
+<status status="FAIL" start="2026-02-11T12:01:13.518276" elapsed="43.715163">Element 'xpath://a[contains(@onclick, "menu_click('ประมวลผลการศึกษา')")]' not visible after 15 seconds.</status>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-11T12:01:57.234691" elapsed="2.491048"/>
+</kw>
+<status status="FAIL" start="2026-02-11T12:01:05.968815" elapsed="53.757097"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Simulate" id="s1" pass="0" fail="1" skip="0">Simulate</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
