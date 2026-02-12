@@ -1,6 +1,6 @@
 *** Settings ***
 Library             SeleniumLibrary
-Suite Setup         SeleniumLibrary.Open Browser    https://reg.up.ac.th/app/main    Chrome
+Suite Setup         SeleniumLibrary.Open Browser    https://reg.up.ac.th/    Chrome
 Suite Teardown      SeleniumLibrary.Close Browser
 
 *** Variables ***
@@ -27,12 +27,10 @@ Login Via Office 365
     SeleniumLibrary.Wait Until Element Is Visible    xpath://a[contains(@href, 'loginoffice365')]    10s
     SeleniumLibrary.Execute Javascript               document.querySelector('a[href*="loginoffice365"]').click()
     
-    # --- ขั้นตอนจัดการ Microsoft Login ---
-    # ตรวจสอบว่าอยู่หน้า 'ลงชื่อเข้าใช้' (ต้องกรอกอีเมล) หรือหน้า 'เลือกบัญชี'
+    # --- จัดการ Microsoft Login ---
+    # หากอยู่หน้า 'ลงชื่อเข้าใช้' ให้กรอกอีเมล
     ${is_signin_page}=    Run Keyword And Return Status    SeleniumLibrary.Wait Until Element Is Visible    id:i0116    5s
-    
     IF    ${is_signin_page}
-        # กรณีต้องกรอกอีเมลก่อน
         SeleniumLibrary.Input Text       id:i0116    ${EMAIL}
         SeleniumLibrary.Click Element    id:idSIButton9
         Sleep    2s
@@ -42,30 +40,32 @@ Login Via Office 365
     SeleniumLibrary.Wait Until Element Is Visible    xpath://div[contains(text(), '${EMAIL}')]    15s
     SeleniumLibrary.Click Element                    xpath://div[contains(text(), '${EMAIL}')]
     
-    # ใส่รหัสผ่าน
-    # ตรวจสอบ Locator id:i0118 ให้ตรงกับรูปภาพ
+    # ใส่รหัสผ่านโดยใช้ id:i0118 ตามที่ปรากฏใน Inspector
     SeleniumLibrary.Wait Until Element Is Visible    id:i0118    15s
     SeleniumLibrary.Input Password                   id:i0118    ${PASSWORD}
     SeleniumLibrary.Click Element                    id:idSIButton9
     
-    # หน้า 'Stay signed in?' (กด 'ใช่')
+    # หน้า 'Stay signed in?' (ลงชื่อเข้าใช้ค้างไว้หรือไม่) ให้กด 'ใช่'
     Run Keyword And Ignore Error    SeleniumLibrary.Wait Until Element Is Visible    id:idSIButton9    5s
     Run Keyword And Ignore Error    SeleniumLibrary.Click Element                    id:idSIButton9
 
     # ยืนยันว่ากลับมาหน้าหลักสำเร็จ
     SeleniumLibrary.Wait Until Page Contains    ออกจากระบบ    20s
+
 Go to Homepage
-    SeleniumLibrary.Click Element  btn-login font-kanit btn-app js-show-header-dropdown
+    # คลิกปุ่มโปรไฟล์หน้าหลัก
+    SeleniumLibrary.Click Element    css:.btn-login.js-show-header-dropdown
+
 Select Grade From Dropdown
     [Arguments]      ${sub_id}    ${grade_value}
     # เลือกเกรดจาก name: 2568_2_22269
     SeleniumLibrary.Wait Until Element Is Visible    name:${sub_id}    15s
     SeleniumLibrary.Select From List By Value        name:${sub_id}    ${grade_value}
-    # ตรวจสอบเกรดที่เลือก
+    # เช็คเกรดตรงนี้เพื่อให้แน่ใจว่าเลือกสำเร็จ
     SeleniumLibrary.List Selection Should Be         name:${sub_id}    ${grade_value}
 
 Click คำนวณเกรด
-    # ค้นหาปุ่มคำนวณเกรด
+    # ค้นหาปุ่มจาก span 'คำนวณเกรด'
     SeleniumLibrary.Scroll Element Into View         xpath://span[text()='คำนวณเกรด']
     SeleniumLibrary.Wait Until Element Is Visible    xpath://span[text()='คำนวณเกรด']    10s
     SeleniumLibrary.Click Element                    xpath://span[text()='คำนวณเกรด']
@@ -73,21 +73,9 @@ Click คำนวณเกรด
 *** Test Cases ***
 Simulate Grade Process
     Login Via Office 365
-    # เข้าเมนู ประมวลผลการศึกษา
-    SeleniumLibrary.Wait Until Element Is Visible    xpath://a[contains(@onclick, "menu_click('ประมวลผลการศึกษา')")]    15s
-    SeleniumLibrary.Click Element                    xpath://a[contains(@onclick, "menu_click('ประมวลผลการศึกษา')")]
-    
-    # เข้าเมนู ทดลองคำนวณเกรด
-    SeleniumLibrary.Wait Until Element Is Visible    xpath://a[contains(@onclick, "student/simulate_grade")]    10s
-    SeleniumLibrary.Click Element                    xpath://a[contains(@onclick, "student/simulate_grade")]
-    
-    # เลือกวิชาและเกรด
-    Select Grade From Dropdown    ${sub_id}    ${grade_value}
-    
-    # กดปุ่มคำนวณ
+    Go to Homepage
+    Select Grade From Dropdown
     Click คำนวณเกรด
-    
     Sleep    2s
     SeleniumLibrary.Capture Page Screenshot    final_result.png
-
 #python -m robot simulate.robot
