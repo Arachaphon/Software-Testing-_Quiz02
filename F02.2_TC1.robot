@@ -10,9 +10,9 @@ ${sub_id}           2568_2_18420
 ${grade_value}      B
 
 *** Keywords ***
-Check Open REG   #pass
+Check Open REG  
     Wait Until Page Contains          ระบบบริการการศึกษา      timeout=10s
-Accept Cookies   #pass
+Accept Cookies   
     ${btn_accept}=    Set Variable    xpath://button[contains(text(), 'ยอมรับ')]
     Wait Until Element Is Visible     ${btn_accept}    timeout=5s
     Click Element                     ${btn_accept}
