@@ -6,8 +6,9 @@ Suite Teardown      SeleniumLibrary.Close Browser
 *** Variables ***
 ${EMAIL}            67023031@up.ac.th
 ${PASSWORD}         Focus_1649
-${sub_id}           2568_2_22269
+${sub_id}           2568_2_18420
 ${grade_value}      B
+${gpa}              3.82
 
 *** Keywords ***
 Check Open REG   #pass
@@ -26,11 +27,11 @@ Go to Login
     Execute Javascript               document.querySelector('a.btn-grad').click()
 Input Username
     Wait Until Element Is Visible    id:i0116                                   timeout=10s
-    input text                       id:i0116               ${EMAIL}            timeout=10s
+    input text                       id:i0116               ${EMAIL}            
     Click Element                    id:idSIButton9
 Input Password
     Wait Until Element Is Visible    id:i0118                                   timeout=10s
-    input text                       id:i0118               ${PASSWORD}         timeout=10s
+    input text                       id:i0118               ${PASSWORD}         
     Click Element                    id:idSIButton9
     Wait Until Page Contains         อนุมัติคำขอลงชื่อเข้าใช้                         timeout=10s 
 Office 365 Login
@@ -38,22 +39,37 @@ Office 365 Login
     Input Password
     Wait Until Page Contains         ลงชื่อเข้าใช้ค้างไว้หรือไม่                        timeout=10s
     Click Element                    id:idSIButton9
-    Wait Until Page Contains         ระบบบริการการศึกษา                          timeout=10s
-
+    Wait Until Page Contains         ระบบบริการการศึกษา                           timeout=10s
 Reg Login
     Maximize Browser Window
     Check Open REG
     Accept Cookies
     Go to Login
     Office 365 Login
-    Capture Page Screenshot          Reg Login.png
-
-Go to simulate
+Go to main
     Click Avatar
-    Wait Until Page Contains         เลือกแอปพลิเคชัน                                 timeout=10s
-    Capture Page Screenshot          go_simulate.png
+    Wait Until Page Contains         เลือกแอปพลิเคชัน                             timeout=10s
+    Execute Javascript    document.evaluate('//div[contains(@class, "list-app-link") and contains(text(), "ระบบทะเบียนออนไลน์")]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+    Wait Until Element Is Visible    id:ui-id-1
+Go to simulate
+    Execute Javascript    document.querySelector("a.sf-with-ul[onclick*='ประมวลผลการศึกษา']").click()
+    Execute Javascript    document.querySelector("a[onclick*='simulate_grade']").click()
+    Wait Until Element Is Visible    id:ui-id-2
+Choose Grade
+    Wait Until Element Is Visible    name:${sub_id}    timeout=15s
+    Select From List By Value        name:${sub_id}    ${grade_value}
+    List Selection Should Be         name:${sub_id}    ${grade_value}
+Simulate Grade
+    Wait Until Element Is Visible    xpath://span[contains(text(), 'คำนวณเกรด')]    timeout=10s
+    Click Element                    xpath://span[contains(text(), 'คำนวณเกรด')]
+    Sleep                            5s
+    Element Text Should Be           id:25682_CGPA      ${gpa} 
 *** Test Cases ***
-Choose Grade Process
+Test simulate grade
     Reg Login
-    Go to simulate 
-#python -m robot Choose_Grade.robot
+    Go to main
+    Go to simulate
+    Choose Grade
+    Simulate Grade
+    Capture Page Screenshot         Simulate_grade.png 
+#python -m robot F02.2_TC2.robot  
